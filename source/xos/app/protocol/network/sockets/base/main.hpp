@@ -264,6 +264,57 @@ public:
         return err;
     }
 
+    /// ...host / ...port
+    virtual string_t& set_host(const string_t& to) {
+        this->set_accept_host(to);
+        this->set_connect_host(to);
+        return this->host();
+    }
+    virtual string_t& set_host(const char_t* to) {
+        this->set_accept_host(to);
+        this->set_connect_host(to);
+        return this->host();
+    }
+    virtual short& set_port(const short& to) {
+        this->set_accept_port(to);
+        this->set_connect_port(to);
+        return this->port();
+    }
+
+    /// ...accept_host / ...accept_port
+    virtual string_t& set_accept_host(const string_t& to) {
+        const char_t* chars = to.has_chars();
+        return set_accept_host(chars);
+    }
+    virtual string_t& set_accept_host(const char_t* to) {
+        string_t& accept_host = this->accept_host();
+        if ((to)) accept_host.assign(to);
+        else accept_host.clear();
+        return accept_host;
+    }
+    virtual short& set_accept_port(const short& to) {
+        short& accept_port = this->accept_port();
+        accept_port = to;
+        return accept_port;
+    }
+
+    /// ...connect_host / ...connect_port
+    virtual string_t& set_connect_host(const string_t& to) {
+        const char_t* chars = to.has_chars();
+        return set_connect_host(chars);
+    }
+    virtual string_t& set_connect_host(const char_t* to) {
+        string_t& connect_host = this->connect_host();
+        if ((to)) connect_host.assign(to);
+        else connect_host.clear();
+        return connect_host;
+    }
+    virtual short& set_connect_port(const short& to) {
+        short& connect_port = this->connect_port();
+        connect_port = to;
+        return connect_port;
+    }
+
 protected:
     typedef typename extends::in_reader_t in_reader_t;
     typedef typename extends::out_writer_t out_writer_t;
@@ -1444,26 +1495,11 @@ protected:
     /// ..host / ..port
     /// ...
     /// host / port
-    virtual string_t& set_host(const string_t& to) {
-        this->set_accept_host(to);
-        this->set_connect_host(to);
-        return this->host();
-    }
-    virtual string_t& set_host(const char_t* to) {
-        this->set_accept_host(to);
-        this->set_connect_host(to);
-        return this->host();
-    }
     virtual const string_t& get_host() const {
         return this->host();
     }
     virtual string_t& host() const {
         return this->connect_host();
-    }
-    virtual short& set_port(const short& to) {
-        this->set_accept_port(to);
-        this->set_connect_port(to);
-        return this->port();
     }
     virtual const short& get_port() const {
         return this->port();
@@ -1473,26 +1509,11 @@ protected:
     }
 
     /// ...accept_host / ...accept_port
-    virtual string_t& set_accept_host(const string_t& to) {
-        const char_t* chars = to.has_chars();
-        return set_accept_host(chars);
-    }
-    virtual string_t& set_accept_host(const char_t* to) {
-        string_t& accept_host = this->accept_host();
-        if ((to)) accept_host.assign(to);
-        else accept_host.clear();
-        return accept_host;
-    }
     virtual const string_t& get_accept_host() const {
         return this->accept_host();
     }
     virtual string_t& accept_host() const {
         return (string_t&)accept_host_;
-    }
-    virtual short& set_accept_port(const short& to) {
-        short& accept_port = this->accept_port();
-        accept_port = to;
-        return accept_port;
     }
     virtual const short& get_accept_port() const {
         return this->accept_port();
@@ -1502,26 +1523,11 @@ protected:
     }
 
     /// ...connect_host / ...connect_port
-    virtual string_t& set_connect_host(const string_t& to) {
-        const char_t* chars = to.has_chars();
-        return set_connect_host(chars);
-    }
-    virtual string_t& set_connect_host(const char_t* to) {
-        string_t& connect_host = this->connect_host();
-        if ((to)) connect_host.assign(to);
-        else connect_host.clear();
-        return connect_host;
-    }
     virtual const string_t& get_connect_host() const {
         return this->connect_host();
     }
     virtual string_t& connect_host() const {
         return (string_t&)connect_host_;
-    }
-    virtual short& set_connect_port(const short& to) {
-        short& connect_port = this->connect_port();
-        connect_port = to;
-        return connect_port;
     }
     virtual const short& get_connect_port() const {
         return this->connect_port();

@@ -19,6 +19,7 @@
 ///   Date: 3/24/2023
 //////////////////////////////////////////////////////////////////////////
 #include "xos/app/protocol/network/sockets/base/main.hpp"
+#include "xos/app/protocol/network/base/main.cpp"
 
 #ifndef XOS_APP_PROTOCOL_NETWORK_SOCKETS_BASE_MAIN_INSTANCE
 /// #define XOS_APP_PROTOCOL_NETWORK_SOCKETS_BASE_MAIN_INSTANCE 
